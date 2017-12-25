@@ -17,7 +17,7 @@
   <div class="input-group">
     <span class="input-group-addon">bitgold://</span>
     <input id='qval' type="text" class="form-control" placeholder="block/tx/address">
-    <span id='query' class="input-group-addon">GoGoGo</span>
+    <span id='query' class="input-group-addon"><a href="#">GoGoGo</a></span>
   </div>  
   <h2>Result</h2>
   <div id="jsonviewer"></div>
@@ -31,6 +31,9 @@
           function (data){$("#jsonviewer").JSONView(data);}
         ); 
     }
+    $("#qval").click(function(){
+        $("#qval").val("");
+    });
     $("#query").click(function(){
         qval = $("#qval").val() || "0000018d2d31e4ed7df7b699d32cc1f4da1ba6e3e6f49a2b33b9ff43ffa630e0";        
         getblock(qval);
