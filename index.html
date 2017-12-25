@@ -19,8 +19,13 @@
     <input id='qval' type="text" class="form-control" placeholder="block/tx/address">
     <span id='query' class="input-group-addon">Go</span>
   </div>  
-  <h2>Result</h2>
-  <div id="jsonviewer"></div>
+  <div class="panel panel-default">
+    <div class="panel-heading">result</div>
+    <div class="panel-body">
+      <div id="jsonviewer"></div>
+    </div>
+  </div>
+  
   <!--=================================================================-->
   <script type="text/javascript">
     function getblock(blockhash){
@@ -31,12 +36,43 @@
           function (data){$("#jsonviewer").JSONView(data);}
         ); 
     }
+    
+    function gettx(txid){
+        $.get("https://bitgold.bitbaba.com/api.php",{
+             method: "getblock",
+             params: '"' + blockhash + '",1'
+          },
+          function (data){$("#jsonviewer").JSONView(data);}
+        ); 
+    }
+    
+    function getaddrinfo(txid){
+        $.get("https://bitgold.bitbaba.com/api.php",{
+             method: "getblock",
+             params: '"' + blockhash + '",1'
+          },
+          function (data){$("#jsonviewer").JSONView(data);}
+        ); 
+    }
+
+    $("#query").click(function(){
+        qval = $("#qval").val() || "0000018d2d31e4ed7df7b699d32cc1f4da1ba6e3e6f49a2b33b9ff43ffa630e0";
+        if (qval.indexOf("00000") == 0){
+          var blockhash = qval;
+          getblock(blockhash);
+        }
+        if (qval.length == "5fd8818c00a3e171e4d43e7194dfbc8df60ded3416e79af1688b3e5448c8564a".length){
+          var txid = qval;
+          gettx(txid);
+        }
+        if (qval.length <= "GLBbaCZMKrNhEnK632YbjufzTXNdJErDLz...".length){
+          var addr = qval;
+          getaddrinfo(addr);
+        }
+    });
+    
     $("#qval").click(function(){
         $("#qval").val("");
-    });
-    $("#query").click(function(){
-        qval = $("#qval").val() || "0000018d2d31e4ed7df7b699d32cc1f4da1ba6e3e6f49a2b33b9ff43ffa630e0";        
-        getblock(qval);
     });
   </script>  
 </body>
