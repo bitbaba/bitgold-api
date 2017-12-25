@@ -39,17 +39,17 @@
     
     function gettx(txid){
         $.get("https://bitgold.bitbaba.com/api.php",{
-             method: "getblock",
-             params: '"' + blockhash + '",1'
+             method: "getrawtransaction",
+             params: '"' + txid + '",true'
           },
           function (data){$("#jsonviewer").JSONView(data);}
         ); 
     }
     
-    function getaddrinfo(txid){
+    function getaddrinfo(addr){
         $.get("https://bitgold.bitbaba.com/api.php",{
-             method: "getblock",
-             params: '"' + blockhash + '",1'
+             method: "validateaddress",
+             params: '"' + addr + '"'
           },
           function (data){$("#jsonviewer").JSONView(data);}
         ); 
