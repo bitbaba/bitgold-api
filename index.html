@@ -33,7 +33,7 @@
     function getblockhash(blockno){
         $.get("https://bitgold.bitbaba.com/api.php",{
              method: "getblockhash",
-             params: '' + blockno + ''
+             params: '[' + blockno + ']'
           },
           function (data){$("#jsonviewer").JSONView(data);}
         ); 
@@ -41,7 +41,7 @@
     function getblock(blockhash){
         $.get("https://bitgold.bitbaba.com/api.php",{
              method: "getblock",
-             params: '"' + blockhash + '",1'
+             params: '["' + blockhash + '",1]'
           },
           function (data){$("#jsonviewer").JSONView(data);}
         ); 
@@ -50,7 +50,7 @@
     function gettx(txid){
         $.get("https://bitgold.bitbaba.com/api.php",{
              method: "getrawtransaction",
-             params: '"' + txid + '",true'
+             params: '["' + txid + '",true]'
           },
           function (data){$("#jsonviewer").JSONView(data);}
         ); 
@@ -59,7 +59,7 @@
     function getaddrinfo(addr){
         $.get("https://bitgold.bitbaba.com/api.php",{
              method: "validateaddress",
-             params: '"' + addr + '"'
+             params: '["' + addr + '"]'
           },
           function (data){$("#jsonviewer").JSONView(data);}
         ); 
