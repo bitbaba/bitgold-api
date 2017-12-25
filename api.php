@@ -7,7 +7,7 @@ $url = 'http://127.0.0.1:30332/';
 
 $header = "content-type: text/plain";
 
-$json_req = '{"jsonrpc": "1.0", "id":"curltest", "method": "'. $method .'", "params": ['. $params .'] }';
+$json_req = '{"jsonrpc": "1.0", "id":"curltest", "method": "'. $method .'", "params": '. $params .' }';
 
 $ch = curl_init(); 
 curl_setopt($ch, CURLOPT_URL, $url);
