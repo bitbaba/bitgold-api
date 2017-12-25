@@ -28,6 +28,14 @@
   
   <!--=================================================================-->
   <script type="text/javascript">
+    function getblockhash(blockno){
+        $.get("https://bitgold.bitbaba.com/api.php",{
+             method: "getblockhash",
+             params: '' + blockno + ''
+          },
+          function (data){$("#jsonviewer").JSONView(data);}
+        ); 
+    }
     function getblock(blockhash){
         $.get("https://bitgold.bitbaba.com/api.php",{
              method: "getblock",
@@ -56,18 +64,18 @@
     }
 
     $("#query").click(function(){
-        qval = $("#qval").val() || "0000018d2d31e4ed7df7b699d32cc1f4da1ba6e3e6f49a2b33b9ff43ffa630e0";
-        if ((qval.indexOf("00000") == 0  && qval.length == 64)
-          ||(qval.indexOf("0x00000") == 0  && qval.length == 66)
-          ||(qval.indexOf("0X00000") == 0  && qval.length == 66)){
-          var blockhash = qval;
-          getblock(blockhash);
-        }else if (qval.length == 64 || qval.length == 66){
-          var txid = qval;
-          gettx(txid);
+        var qval = $("#qval").val() || "0000018d2d31e4ed7df7b699d32cc1f4da1ba6e3e6f49a2b33b9ff43ffa630e0";
+        if (qval.indexOf('0x') == 0 || qval.indexOf('0X') == 0){
+            qval = qval.substr(2);
         }else{
-          var addr = qval;
-          getaddrinfo(addr);
+            getblockhash(qval);
+        }
+        if (qval.length == 64){
+          if (qval.indexOf("00000") == 0) getblock(qval);
+          else gettx(qval);
+        }else if (qval.indexOf('G') == 0 || qval.indexOf('3') == 0){
+          getaddrinfo(qval);
+        }else{    
         }
     });
     
