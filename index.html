@@ -57,15 +57,15 @@
 
     $("#query").click(function(){
         qval = $("#qval").val() || "0000018d2d31e4ed7df7b699d32cc1f4da1ba6e3e6f49a2b33b9ff43ffa630e0";
-        if (qval.indexOf("00000") == 0){
+        if ((qval.indexOf("00000") == 0  && qval.length == 64)
+          ||(qval.indexOf("0x00000") == 0  && qval.length == 66)
+          ||(qval.indexOf("0X00000") == 0  && qval.length == 66)){
           var blockhash = qval;
           getblock(blockhash);
-        }
-        if (qval.length == "5fd8818c00a3e171e4d43e7194dfbc8df60ded3416e79af1688b3e5448c8564a".length){
+        }else if (qval.length == 64 || qval.length == 66){
           var txid = qval;
           gettx(txid);
-        }
-        if (qval.length <= "GLBbaCZMKrNhEnK632YbjufzTXNdJErDLz...".length){
+        }else{
           var addr = qval;
           getaddrinfo(addr);
         }
