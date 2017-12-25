@@ -65,7 +65,17 @@
         ); 
     }
 
-    $("#query").click(function(){
+    $("#query").click(function(){doQuery();});
+    
+    $('#qval').keypress(function(e){
+      if(e.which == 13) {doQuery();}
+    })
+    
+    $("#qval").click(function(){
+        $("#qval").val("");
+    });
+    
+    function doQuery(){
         var qval = $("#qval").val() || "0000018d2d31e4ed7df7b699d32cc1f4da1ba6e3e6f49a2b33b9ff43ffa630e0";
         if (qval.indexOf('0x') == 0 || qval.indexOf('0X') == 0){
             qval = qval.substr(2);
@@ -79,11 +89,7 @@
           getaddrinfo(qval);
         }else{    
         }
-    });
-    
-    $("#qval").click(function(){
-        $("#qval").val("");
-    });
+    }
   </script>  
 </body>
 </html>
