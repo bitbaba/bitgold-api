@@ -16,11 +16,11 @@
   <!--=================================================================-->
   <script type="text/javascript">
     $("#query").click(function(){
-        var result =$.get("https://bitgold.bitbaba.com/api.php",{
+        $.get("https://bitgold.bitbaba.com/api.php",{
              method: "getblock",
              params: "%220000018d2d31e4ed7df7b699d32cc1f4da1ba6e3e6f49a2b33b9ff43ffa630e0%22,1"
           },
-          function (data){$("#jsonviewer").JSONView(result);}
+          function (data){$("#jsonviewer").JSONView(data);}
         );        
     });
   </script>  
