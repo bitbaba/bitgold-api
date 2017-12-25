@@ -8,7 +8,6 @@
   <script type="text/javascript" src="/js/jquery.jsonview.js"></script>
 </head>
 <body>
-  <h2>bitgold explorer</h2>
   <input type='text'></input>
   <button id='query'>Query</button>
   <h2>Result</h2>
@@ -18,7 +17,7 @@
     $("#query").click(function(){
         $.get("https://bitgold.bitbaba.com/api.php",{
              method: "getblock",
-             params: "%220000018d2d31e4ed7df7b699d32cc1f4da1ba6e3e6f49a2b33b9ff43ffa630e0%22,1"
+             params: '"0000018d2d31e4ed7df7b699d32cc1f4da1ba6e3e6f49a2b33b9ff43ffa630e0",1'
           },
           function (data){$("#jsonviewer").JSONView(data);}
         );        
