@@ -12,7 +12,7 @@ $json_req = '{"jsonrpc": "1.0", "id":"curltest", "method": "'. $method .'", "par
 $ch = curl_init(); 
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-curl_setopt($ch, CURLOPT_USERPWD, "rpcuser:~secrue");
+curl_setopt($ch, CURLOPT_USERPWD, "rpcuser:rpcpassword");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 curl_setopt($ch, CURLOPT_POST, 1);
